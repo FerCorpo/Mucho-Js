@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Agencia de viajes</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            margin-left: 10px;
+            background-image: url("images/pexels-worldMap-highQuality.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        form {
+            display: none;
+        }
+
+        label {
+            color: dimgray;
+            text-shadow: 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue, 0 0 15px aliceblue;
+        }
+        
+        .navbar {
+            background-color: aliceblue;
+        }
+
+        #formularios {
+            margin-top: 15%;
+            /* background-color: aliceblue;
+            border-radius: 7px; */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Agencia de viajes</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#" onclick="gestionFormularios('frmAltaCliente');">Alta de cliente</a>
+                </li>
+                <li>
+                    <a href="#" onclick="gestionFormularios('frmAltaAlojamiento');">Alta de alojamiento</a>
+                </li>
+                <li>
+                    <a href="#" onclick="gestionFormularios('frmAltaReserva');">Alta reserva</a>
+                </li>
+                <li>
+                    <a href="#" onclick="gestionFormularios('frmBajaReserva');">Baja reserva</a>
+                </li>
+                <li>
+                    <a href="#" onclick="mostrarListadoClientes();">Listado clientes</a>
+                </li>
+                <li>
+                    <a href="#" onclick="mostrarListadoAlojamientos();">Listado alojamientos</a>
+                </li>
+                <li>
+                    <a href="#" onclick="gestionFormularios('frmListadoReservasPorFecha');">Listado reservas</a>
+                </li>
+                <li>
+                    <a href="#" onclick="gestionFormularios('frmListadoReservasPorCliente');">Listado reservas cliente</a>
+                </li>
+                <li>
+                    <a href="#" onclick="mostrarListadoHabitacionesConDesayuno();">Listado habitaciones con desayuno</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid" id="formularios">
+        <form class="form-horizontal" name="frmAltaCliente" id="frmAltaCliente">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Alta de cliente</legend>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtDni">DNI</label>
+                    <div class="col-xs-4">
+                        <input id="txtDni" name="txtDni" placeholder="DNI" class="form-control input-md"
+                            type="text" />
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtNombre">Nombre</label>
+                    <div class="col-xs-4">
+                        <input id="txtNombre" name="txtNombre" placeholder="Nombre" class="form-control input-md"
+                            type="text" />
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtApellidos">Apellidos</label>
+                    <div class="col-xs-4">
+                        <input id="txtApellidos" name="txtApellidos" placeholder="Apellidos" class="form-control input-md"
+                            type="text" />
+                    </div>
+                </div>
+                <!-- Input Button -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="btnAceptarAltaCliente"></label>
+                    <div class="col-xs-4">
+                        <input type="button" id="btnAceptarAltaCliente" name="btnAceptarAltaCliente" class="btn btn-primary"
+                            value="Aceptar" onclick="aceptarAltaCliente();" />
+                    </div>
+                </div>
+                <!-- Text area-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtRespuesta"></label>
+                    <div class="col-xs-4">
+                        <textarea id="txtRespuesta" name="txtRespuesta" placeholder="Aquí se mostrará un mensaje informativo cuando pulse Aceptar" class="form-control" readonly></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <form class="form-horizontal" name="frmAltaAlojamiento" id="frmAltaAlojamiento">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Alta de alojamiento</legend>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtNumPersonas">Número de personas</label>
+                    <div class="col-xs-4">
+                        <input id="txtNumPersonas" name="txtNumPersonas" placeholder="Número de personas"
+                            class="form-control input-md" type="text" />
+                    </div>
+                </div>
+                <!-- Multiple Radios -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="rbtTipoAloj">Tipo de alojamiento</label>
+                    <div class="col-xs-4">
+                        <div class="radio">
+                            <input name="rbtTipoAloj" id="rbtTipoAloj-H" value="habitacion" checked="checked" type="radio" />
+                            <label for="rbtTipoAloj-S">Habitación</label>
+                        </div>
+                        <div class="radio">
+                            <input name="rbtTipoAloj" id="rbtTipoAloj-A" value="apartamento" type="radio" />
+                            <label for="rbtTipoAloj-N">Apartamento</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Multiple Radios -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="rbtDesayuno">Desayuno (Habitación)</label>
+                    <div class="col-xs-4">
+                        <div class="radio">
+                            <input name="rbtDesayuno" id="rbtDesayuno-S" value="S" checked="checked" type="radio" />
+                            <label for="rbtDesayuno-S">Sí</label>
+                        </div>
+                        <div class="radio">
+                            <input name="rbtDesayuno" id="rbtDesayuno-N" value="N" type="radio" />
+                            <label for="rbtDesayuno-N">No</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Multiple Radios -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="rbtParking">Parking (Apartamento)</label>
+                    <div class="col-xs-4">
+                        <div class="radio">
+                            <input name="rbtParking" id="rbtParking-S" value="S" checked="checked" type="radio" />
+                            <label for="rbtParking-S">Sí</label>
+                        </div>
+                        <div class="radio">
+                            <input name="rbtParking" id="rbtParking-N" value="N" type="radio" />
+                            <label for="rbtParking-N">No</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtNumDormitorios">Número de dormitorios (Apartamento)</label>
+                    <div class="col-xs-4">
+                        <input id="txtNumDormitorios" name="txtNumDormitorios" placeholder="Número de dormitorios"
+                            class="form-control input-md" type="text" />
+                    </div>
+                </div>
+                <!-- Input Button -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="btnAceptarAltaAlojamiento"></label>
+                    <div class="col-xs-4">
+                        <input type="button" id="btnAceptarAltaAlojamiento" name="btnAceptarAltaAlojamiento" class="btn btn-primary"
+                            value="Aceptar" onclick="aceptarAltaAlojamiento();" />
+                    </div>
+                </div>
+                <!-- Text area-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtRespuesta"></label>
+                    <div class="col-xs-4">
+                        <textarea id="txtRespuesta" name="txtRespuesta" placeholder="Aquí se mostrará un mensaje informativo cuando pulse Aceptar" class="form-control" readonly></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <form class="form-horizontal" name="frmAltaReserva" id="frmAltaReserva">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Alta de reserva</legend>
+                <!-- Combo box-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="comboClientes">Cliente</label>
+                    <div class="col-xs-4">
+                        <select name="comboClientes" id="comboClientes" class="form-control">
+                            <!--Los <option> se añaden con JS actualizados-->
+                        </select>
+                    </div>
+                </div>
+                <!-- Combo box-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="comboAlojamientos">Alojamientos</label>
+                    <div class="col-xs-4">
+                        <select multiple name="comboAlojamientos" id="comboAlojamientos" class="form-control">
+                            <!--Los <option> se añaden con JS actualizados-->
+                        </select>
+                    </div>
+                </div>
+                <!-- Date input-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="dateFechaInicio">Fecha de inicio</label>
+                    <div class="col-xs-4">
+                        <input id="dateFechaInicio" name="dateFechaInicio" class="form-control input-md" type="date" />
+                    </div>
+                </div>
+                <!-- Date input-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="dateFechaFin">Fecha de fin</label>
+                    <div class="col-xs-4">
+                        <input id="dateFechaFin" name="dateFechaFin" class="form-control input-md" type="date" />
+                    </div>
+                </div>
+                <!-- Input Button -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="btnAceptarAltaReserva"></label>
+                    <div class="col-xs-4">
+                        <input type="button" id="btnAceptarAltaReserva" name="btnAceptarAltaReserva" class="btn btn-primary"
+                            value="Aceptar" onclick="aceptarAltaReserva();" />
+                    </div>
+                </div>
+                <!-- Text area-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtRespuesta"></label>
+                    <div class="col-xs-4">
+                        <textarea id="txtRespuesta" name="txtRespuesta" placeholder="Aquí se mostrará un mensaje informativo cuando pulse Aceptar" class="form-control" readonly></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <form class="form-horizontal" name="frmBajaReserva" id="frmBajaReserva">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Baja de reserva</legend>
+                <!-- Combo box-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="comboReservas">Reserva</label>
+                    <div class="col-xs-4">
+                        <select name="comboReservas" id="comboReservas" class="form-control">
+                            <!--Los <option> se añaden con JS actualizados-->
+                        </select>
+                    </div>
+                </div>
+                <!-- Input Button -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="btnAceptarBajaReserva"></label>
+                    <div class="col-xs-4">
+                        <input type="button" id="btnAceptarBajaReserva" name="btnAceptarBajaReserva" class="btn btn-primary"
+                            value="Aceptar" onclick="aceptarBajaReserva();" />
+                    </div>
+                </div>
+                <!-- Text area-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtRespuesta"></label>
+                    <div class="col-xs-4">
+                        <textarea id="txtRespuesta" name="txtRespuesta" placeholder="Aquí se mostrará un mensaje informativo cuando pulse Aceptar" class="form-control" readonly></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <form class="form-horizontal" name="frmListadoReservasPorFecha" id="frmListadoReservasPorFecha">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Listado de reservas entre dos fechas</legend>
+                <!-- Date input-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="dateFechaInicio">Fecha de inicio</label>
+                    <div class="col-xs-4">
+                        <input id="dateFechaInicio" name="dateFechaInicio" class="form-control input-md" type="date" />
+                    </div>
+                </div>
+                <!-- Date input-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="dateFechaFin">Fecha de fin</label>
+                    <div class="col-xs-4">
+                        <input id="dateFechaFin" name="dateFechaFin" class="form-control input-md" type="date" />
+                    </div>
+                </div>
+                <!-- Input Button -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="btnAceptarListadoReservasPorFecha"></label>
+                    <div class="col-xs-4">
+                        <input type="button" id="btnAceptarListadoReservasPorFecha" name="btnAceptarListadoReservasPorFecha" class="btn btn-primary"
+                            value="Aceptar" onclick="AceptarListadoReservasPorFecha();" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <form class="form-horizontal" name="frmListadoReservasPorCliente" id="frmListadoReservasPorCliente">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Listado de reservas por cliente</legend>
+                <!-- Combo box-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="comboClientes">Cliente</label>
+                    <div class="col-xs-4">
+                        <select name="comboClientes" id="comboClientes" class="form-control">
+                            <!--Los <option> se añaden con JS actualizados-->
+                        </select>
+                    </div>
+                </div>
+                <!-- Input Button -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="btnAceptarListadoReservasPorCliente"></label>
+                    <div class="col-xs-4">
+                        <input type="button" id="btnAceptarListadoReservasPorCliente" name="btnAceptarListadoReservasPorCliente" class="btn btn-primary"
+                            value="Aceptar" onclick="AceptarListadoReservasPorCliente();" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <script src="js/objetos.js"></script>
+    <script src="js/principal.js"></script>
+</body>
+
+</html>

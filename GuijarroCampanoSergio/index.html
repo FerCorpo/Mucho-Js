@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1>Agencia de alquiler de Vehículos</h1>
+    <div class="row mt-5">
+      <div class="col-md-6">
+        <h2>Alta del Cliente</h2>
+        <form action="" name="frmAltaCliente">
+          <div class="mb-3">
+            <label for="dni" class="form-label">DNI:</label>
+            <input type="text" class="form-control" id="dni" name="dni" />
+          </div>
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" />
+          </div>
+          <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos:</label>
+            <input type="text" class="form-control" id="apellidos" name="apellidos" />
+          </div>
+
+        </form>
+        <button type="submit" class="btn btn-primary" onclick="altaCliente()">Alta Cliente</button>
+      </div>
+
+      <div class="col-md-6">
+        <h2>Alta de Vehículo</h2>
+        <form action="" name="frmAltaVehiculo">
+          <div class="mb-3">
+            <label for="matricula" class="form-label">Matrícula:</label>
+            <input type="text" class="form-control" id="matricula" name="matricula" />
+          </div>
+          <div class="mb-3">
+            <label for="marca" class="form-label">Marca:</label>
+            <input type="text" class="form-control" id="marca" name="marca" />
+          </div>
+          <div class="mb-3">
+            <label for="modelo" class="form-label">Modelo:</label>
+            <input type="text" class="form-control" id="modelo" name="modelo" />
+          </div>
+          <fieldset class="mb-3">
+            <legend>Tipo de combustible</legend>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="combustible" id="coche" value="coche" checked>
+              <label class="form-check-label" for="coche">Coche</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="combustible" id="moto" value="moto">
+              <label class="form-check-label" for="moto">Moto</label>
+            </div>
+          </fieldset>
+          <div class="mb-3">
+            <label for="plazas" class="form-label">Número de plazas:</label>
+            <input type="text" class="form-control" id="plazas" name="plazas" />
+          </div>
+          <div class="mb-3">
+            <label for="ciclomotor" class="form-label">Ciclomotor:</label>
+            <input type="text" class="form-control" id="ciclomotor" name="ciclomotor" />
+          </div>
+
+        </form>
+        <button type="submit" class="btn btn-primary" onclick="altaVehiculo()">Alta Vehículo</button>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Alta de Alquiler</h2>
+          <form action="" name="frmAltaAlquiler">
+            <div class="mb-3">
+              <label for="dni" class="form-label">DNI:</label>
+              <input type="text" class="form-control" id="dni" name="dni" />
+            </div>
+            <div class="mb-3">
+              <label for="matriculas" class="form-label">Introduce las matrículas separadas por comas , :</label>
+              <input type="text" class="form-control" id="matriculas" name="matriculas" />
+            </div>
+            <div class="mb-3">
+              <label for="fechaInicio" class="form-label">Fecha de inicio:</label>
+              <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" />
+            </div>
+            <div class="mb-3">
+              <label for="fechaFin" class="form-label">Fecha de fin:</label>
+              <input type="date" class="form-control" id="fechaFin" name="fechaFin" />
+            </div>
+          </form>
+          <button type="submit" class="btn btn-primary" onclick="altaAlquiler()">Alta Alquiler</button>
+        </div>
+        <div class="col-md-6">
+          <h2>Baja de Alquiler</h2>
+          <form name="frmBajaAlquiler">
+            <div class="mb-3">
+              <label for="idAlquiler" class="form-label">Id Alquiler:</label>
+              <input type="text" class="form-control" id="idAlquiler" name="idAlquiler" />
+          </form>
+          <button type="submit" class="btn btn-primary" onclick="bajaAlquiler()">Baja Alquiler</button>
+          <!--No entiendo por qué aquí recarga la página-->
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Listado de Clientes</h2>
+        <button type="submit" class="btn btn-primary" onclick="listadoClientes()">Listado Clientes</button>
+        <div id="listadoClientes"></div>
+      </div>
+      <div class="col-md-6">
+        <h2>Listado de Vehículos</h2>
+        <button type="submit" class="btn btn-primary" onclick="listadoVehiculos()">Listado Vehículos</button>
+        <div id="listadoVehiculos"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Listado de Alquileres de un Cliente</h2>
+        <form name="frmListadoAlquileresCliente">
+          <div class="mb-3">
+            <label for="dni" class="form-label">DNI:</label>
+            <input type="text" class="form-control" id="dni" name="dni" />
+          </div>
+        </form>
+        <button type="submit" class="btn btn-primary" onclick="listadoAlquileresCliente()">Listado Alquileres
+          Cliente</button>
+
+      </div>
+      <div class="col-md-6">
+        <h2>Listado de Alquileres entre dos fechas</h2>
+        <form name="frmListadoAlquileresFechas">
+          <div class="mb-3">
+            <label for="fechaInicio" class="form-label">Fecha de inicio:</label>
+            <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" />
+          </div>
+          <div class="mb-3">
+            <label for="fechaFin" class="form-label">Fecha de fin:</label>
+            <input type="date" class="form-control" id="fechaFin" name="fechaFin" />
+          </div>
+        </form>
+        <button type="submit" class="btn btn-primary" onclick="listadoAlquileresFechas()">Listado Alquileres
+          Fechas</button>
+        <div id="listadoAlquileresFechas"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Listado de Coches Eléctricos</h2>
+        <button type="submit" class="btn btn-primary" onclick="listadoCochesElectricos()">Listado Coches
+          Eléctricos</button>
+        <div id="listadoCochesElectricos"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="objetos.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
